@@ -66,10 +66,21 @@ ALTER TABLE public.profiles
   ADD COLUMN IF NOT EXISTS grading_scans_remaining integer NOT NULL DEFAULT 0,
   ADD COLUMN IF NOT EXISTS quota_last_reset_at timestamptz;
 ```
+## 🛠️ Instant IDE Integration (VS Code & Cursor)
+
+This repository includes a native `postgres-saas.code-snippets` file. You can add it to your project to search and deploy this core foundation directly from your code editor by typing shortcuts like `pg-schema-saas`.
+
+### ⚡ Want the Premium Production Snippets?
+The free snippet file in this repo only covers the basic setup. When you purchase the full system, you get the premium IDE snippets pack containing:
+* `pg-rls-harden` (Instant column-level security policies)
+* `pg-concurrency-lock` (Row-locking functions to kill billing race conditions)
+* `pg-lifecycle-reset` (Automated cron-style billing cycle resets)
+
+📦 **[Get the Full 28-Page Guide & Premium IDE Tooling Bundle (https://questmaster1.gumroad.com/l/lnmsvg])**
 
 ---
 
-### 🚀 What Else is Covered in the $99 System Blueprint?
+### 🚀 What Else is Covered in the System Blueprint?
 
 The public code stops here. The full production guide goes deep into the hardest implementation hurdles backend engineers face, providing full copy-pasteable scripts for:
 
@@ -79,5 +90,5 @@ The public code stops here. The full production guide goes deep into the hardest
 * **Performance Tuning:** Specialized partial and covering indexes targeting *only* users with active balances to keep hot entitlement lookup paths at lightning-fast `O(1)` speeds as your user base crosses 10,000+ records.
 * **Row-Level Security (RLS) Hardening:** Strict column-level privilege configurations (`REVOKE UPDATE`) to permanently block client-side web requests or manual API tampering on revenue-critical fields.
 
-📦 **[Get the Complete PostgreSQL SaaS Architecture System ($99)]
+📦 **[Get the Complete PostgreSQL SaaS Architecture System]
 (https://questmaster1.gumroad.com/l/lnmsvg) **
