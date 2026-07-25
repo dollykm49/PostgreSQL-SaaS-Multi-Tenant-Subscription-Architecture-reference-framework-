@@ -1,0 +1,39 @@
+{
+  "PostgreSQL SaaS Subscription Enums": {
+    "prefix": "pg-enum-saas",
+    "body": [
+      "CR${1:EATE TYPE public.subscription_tier AS ENUM (}",
+      "    'free',    ",
+      "    'starter', ",
+      "    'pro',     ",
+      "    'premium'  ",
+      ");"
+    ],
+    "description": "Defines explicit typed enums for SaaS subscription tiers directly in PostgreSQL."
+  },
+
+  "PostgreSQL SaaS Multi-Tenant Schema Alteration": {
+    "prefix": "pg-schema-saas",
+    "body": [
+      "ALTER TABLE public.${1:profiles}",
+      "  ADD COLUMN IF NOT EXISTS subscription_tier public.subscription_tier NOT NULL DEFAULT 'free',",
+      "  ADD COLUMN IF NOT EXISTS ${2:grading_scans_remaining} integer NOT NULL DEFAULT 0,",
+      "  ADD COLUMN IF NOT EXISTS quota_last_reset_at timestamptz;",
+      "$0"
+    ],
+    "description": "Alters user or tenant profiles to add typed subscription state and granular resource balance counters."
+  },
+
+  "PostgreSQL Atomic Usage Deduction Trigger": {
+    "prefix": "pg-atomic-deduct",
+    "body": [
+      "UPDATE public.${1:profiles}",
+      "SET ${2:grading_scans_remaining} = ${2:grading_scans_remaining} - 1",
+      "WHERE ${3:id} = ${4:\\$1}",
+      "  AND ${2:grading_scans_remaining} > 0",
+      "RETURNING ${2:grading_scans_remaining};",
+      "$0"
+    ],
+    "description": "An atomic, serialized read-and-update statement to completely prevent multi-tenant concurrency race conditions."
+  }
+}
