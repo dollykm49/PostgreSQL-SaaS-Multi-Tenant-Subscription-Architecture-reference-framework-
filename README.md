@@ -77,7 +77,7 @@ The free snippet file in this repo only covers the basic setup. When you purchas
 * `pg-lifecycle-reset` (Automated cron-style billing cycle resets)
 
 📦 **[Get the Full 28-Page Guide & Premium IDE Tooling Bundle (https://questmaster1.gumroad.com/l/lnmsvg])**
-
+but make sure while in this repo to go to postgres-saas.code-snippet file 
 ---
 
 ### 🚀 What Else is Covered in the System Blueprint?
